@@ -42,4 +42,6 @@ gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sPAPERSIZE=letter 
 if [ $? -eq 0 ]
   then
       echo "Done. Original file saved in $1.old."
+  else
+      rm $1
 fi
