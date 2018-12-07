@@ -33,9 +33,13 @@
 
 if [ $# -eq 0 ]
   then
-    echo "Provide pdf filename. Example: ./embed-fonts.pdf.sh file.pdf"
+    echo "Provide pdf filename. Example: ./embed-fonts-pdf.sh file.pdf"
+    exit 1
 fi
 
 mv $1 $1.old
 gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sPAPERSIZE=letter -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dCompatibilityLevel=1.4 -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=$1 -f $1.old
-echo "Done. Original file saved in $1.old."
+if [ $? -eq 0 ]
+  then
+      echo "Done. Original file saved in $1.old."
+fi
